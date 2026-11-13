@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agurto · Propuestas de sitio web</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #121826; --text: #4a5263; --muted: #6b7385; --line: #e2e6ee; --bg: #f6f7fa; --blue: #0134b8; --red: #e1251b; --navy: #0b1b45; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 "Plus Jakarta Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3 { font-family: "Outfit", system-ui, sans-serif; color: var(--ink); margin: 0; line-height: 1.1; font-weight: 600; }
+  p { margin: 0; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+  header { background: var(--navy); color: rgba(255,255,255,.8); padding: 72px 0 64px; }
+  header h1 { color: #fff; font-size: clamp(34px, 5vw, 56px); max-width: 780px; }
+  header p { margin-top: 18px; max-width: 680px; font-size: 17px; }
+  .k { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #9fb6ff; margin-bottom: 18px; display: block; }
+  .bench { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; }
+  .bench span { padding: 6px 12px; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; }
+  main { padding: 64px 0 96px; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
+  .shot { position: relative; aspect-ratio: 16/10; overflow: hidden; background: #e9ecf2; border-bottom: 1px solid var(--line); }
+  .shot iframe { position: absolute; top: 0; left: 0; width: 1440px; height: 900px; border: 0; transform-origin: 0 0; pointer-events: none; }
+  .body { padding: 28px 28px 30px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+  .meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .letter { font: 600 13px "Outfit"; letter-spacing: .12em; color: var(--red); }
+  .sw { display: flex; gap: 6px; }
+  .sw i { width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(0,0,0,.1); }
+  .card h2 { font-size: 26px; }
+  .card ul { margin: 0; padding-left: 18px; font-size: 15px; display: grid; gap: 4px; }
+  .ref { font-size: 14px; color: var(--muted); }
+  .actions { margin-top: auto; padding-top: 8px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn { display: inline-flex; padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 14px; text-decoration: none; background: var(--blue); color: #fff; }
+  .btn:hover { background: var(--navy); }
+  .btn.o { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  .btn.o:hover { border-color: var(--ink); }
+  .notes { margin-top: 56px; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 32px; }
+  .notes h2 { font-size: 22px; margin-bottom: 14px; }
+  .notes ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+  footer { padding: 28px 0 48px; font-size: 13px; color: var(--muted); }
+  @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <span class="k">Propuestas de diseño · Noviembre 2026</span>
+  <h1>Nuevo sitio corporativo para Agurto</h1>
+  <p>Cuatro direcciones visuales para renovar la presencia digital de Agurto como operador logístico, al nivel de los principales actores del mercado. Todas usan el mismo contenido para comparar solo el diseño.</p>
+  <div class="bench"><span style="border:0;padding-left:0">Referentes del mercado:</span><span>Loginsa</span><span>Megacentro</span><span>ITS Logistics</span><span>TW Logística</span></div>
+</div></header>
+
+<main><div class="wrap">
+  <div class="grid">
+    <article class="card">
+      <div class="shot"><iframe src="a-institucional.html" title="Vista previa propuesta A" loading="lazy" tabindex="-1"></iframe></div>
+      <div class="body">
+        <div class="meta"><span class="letter">PROPUESTA A</span><span class="sw"><i style="background:#0b1b45"></i><i style="background:#0134b8"></i><i style="background:#e1251b"></i><i style="background:#f3f5f9"></i></span></div>
+        <h2>Institucional</h2>
+        <p>Sitio corporativo clásico y sobrio: transmite solidez, escala y confianza a gerentes de logística y compras.</p>
+        <ul><li>Portada a pantalla completa con cifras clave destacadas</li><li>Soluciones detalladas, diferenciales e industrias</li><li>Formulario comercial con selección de servicio</li></ul>
+        <p class="ref">En la línea de Megacentro y TW Logística.</p>
+        <div class="actions"><a class="btn" href="a-institucional.html">Ver propuesta</a></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="shot"><iframe src="b-editorial.html" title="Vista previa propuesta B" loading="lazy" tabindex="-1"></iframe></div>
+      <div class="body">
+        <div class="meta"><span class="letter">PROPUESTA B</span><span class="sw"><i style="background:#f5f2ec"></i><i style="background:#15171c"></i><i style="background:#0b1b45"></i><i style="background:#e1251b"></i></span></div>
+        <h2>Editorial premium</h2>
+        <p>Elegante y diferenciadora: tipografía con serifa, mucho aire y foco en la historia familiar y el oficio.</p>
+        <ul><li>Titulares grandes y tono de marca cercano</li><li>Servicios como índice editorial</li><li>Cita de la familia y línea de tiempo</li></ul>
+        <p class="ref">Se diferencia del estilo habitual del rubro.</p>
+        <div class="actions"><a class="btn" href="b-editorial.html">Ver propuesta</a></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="shot"><iframe src="c-tecnologica.html" title="Vista previa propuesta C" loading="lazy" tabindex="-1"></iframe></div>
+      <div class="body">
+        <div class="meta"><span class="letter">PROPUESTA C</span><span class="sw"><i style="background:#060b1a"></i><i style="background:#0f1b3d"></i><i style="background:#3f7bff"></i><i style="background:#ff4136"></i></span></div>
+        <h2>Tecnológica</h2>
+        <p>Posiciona a Agurto como operador moderno: trazabilidad, GPS e inventario en línea al centro del mensaje.</p>
+        <ul><li>Módulo de seguimiento de pedido (vista de ejemplo)</li><li>Servicios en mosaico y proceso en 5 pasos</li><li>Llamado a cotizar breve y directo</li></ul>
+        <p class="ref">En la línea de ITS Logistics.</p>
+        <div class="actions"><a class="btn" href="c-tecnologica.html">Ver propuesta</a></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="shot"><iframe src="../agurto-ejemplo/index.html" title="Vista previa propuesta D" loading="lazy" tabindex="-1"></iframe></div>
+      <div class="body">
+        <div class="meta"><span class="letter">PROPUESTA D</span><span class="sw"><i style="background:#0134b8"></i><i style="background:#e1251b"></i><i style="background:#121315"></i><i style="background:#f0f0f0"></i></span></div>
+        <h2>Comercial directa</h2>
+        <p>Basada en el sistema de diseño de Loginsa, adaptado a los colores de Agurto. Clara, funcional y orientada a la cotización.</p>
+        <ul><li>Barra superior con teléfono y cotización</li><li>Servicios con detalle desplegable</li><li>Estructura probada en el rubro</li></ul>
+        <p class="ref">En la línea de Loginsa.</p>
+        <div class="actions"><a class="btn" href="../agurto-ejemplo/index.html">Ver propuesta</a></div>
+      </div>
+    </article>
+  </div>
+
+  <section class="notes" aria-labelledby="nt">
+    <h2 id="nt">Antes de publicar</h2>
+    <ul>
+      <li>Las fotos y el logo vienen del sitio actual; para producción se recomienda una sesión fotográfica nueva y archivos en alta resolución.</li>
+      <li>Los formularios y el seguimiento de pedidos son demostrativos: no envían datos.</li>
+      <li>La cita de la familia (propuesta B) es un texto de ejemplo a validar con Agurto.</li>
+    </ul>
+  </section>
+</div></main>
+<footer><div class="wrap">Mockups de diseño para revisión con el cliente.</div></footer>
+<script>
+  const fit = () => document.querySelectorAll('.shot').forEach(s => { s.querySelector('iframe').style.transform = `scale(${s.clientWidth / 1440})`; });
+  addEventListener('resize', fit); fit();
+</script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agurto | Logística con oficio</title>
+<meta name="description" content="Propuesta B: sitio corporativo editorial para Agurto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f5f2ec; --paper-2: #ebe6dc; --ink: #15171c; --text: #4b4d52; --muted: #7a7b80;
+    --line: #d9d3c7; --blue: #0134b8; --red: #e1251b; --navy: #0b1b45;
+    --serif: "Fraunces", Georgia, serif; --sans: "Inter", system-ui, sans-serif;
+    --wrap: 1240px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--paper); color: var(--text); font: 16px/1.7 var(--sans); -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--ink); margin: 0; line-height: 1.05; letter-spacing: -0.02em; }
+  p { margin: 0; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 28px; }
+  :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+  .label { font: 500 12px var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+  .link { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; color: var(--ink); text-decoration: none; padding-bottom: 4px; border-bottom: 1px solid var(--ink); }
+  .link:hover { color: var(--blue); border-color: var(--blue); }
+  .btn { display: inline-block; padding: 15px 28px; border-radius: 999px; background: var(--ink); color: var(--paper); text-decoration: none; font: 600 15px var(--sans); border: 0; cursor: pointer; transition: background .2s; }
+  .btn:hover { background: var(--blue); }
+
+  header { border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; min-height: 84px; gap: 20px; }
+  .logo img { height: 44px; width: auto; mix-blend-mode: multiply; }
+  nav ul { display: flex; gap: 34px; list-style: none; margin: 0; padding: 0; }
+  nav a { text-decoration: none; font-size: 15px; color: var(--ink); }
+  nav a:hover { color: var(--blue); }
+
+  .hero { padding: 90px 0 110px; }
+  .hero .wrap { display: grid; grid-template-columns: 7fr 5fr; gap: 64px; align-items: end; }
+  .hero h1 { font-size: clamp(46px, 7vw, 96px); }
+  .hero h1 em { font-style: italic; color: var(--blue); }
+  .hero .lead { max-width: 520px; margin-top: 34px; font-size: 18px; }
+  .hero .row { display: flex; align-items: center; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
+  .hero figure { margin: 0; }
+  .hero figure img { aspect-ratio: 4/5; object-fit: cover; border-radius: 4px; width: 100%; }
+  figcaption { margin-top: 12px; font-size: 13px; color: var(--muted); display: flex; justify-content: space-between; }
+
+  .numbers { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .numbers .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .n { padding: 44px 28px 40px 0; }
+  .n + .n { padding-left: 28px; border-left: 1px solid var(--line); }
+  .n strong { display: block; font: 400 clamp(40px, 4.4vw, 60px)/1 var(--serif); color: var(--ink); }
+  .n span { display: block; margin-top: 12px; font-size: 14px; }
+
+  section { padding: 120px 0; }
+  .split { display: grid; grid-template-columns: 4fr 8fr; gap: 64px; }
+  .split h2 { font-size: clamp(34px, 4.2vw, 56px); }
+
+  .services { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
+  .services li { display: grid; grid-template-columns: 70px 1fr 1.1fr; gap: 28px; padding: 36px 0; border-bottom: 1px solid var(--line); }
+  .services .i { font: italic 400 22px var(--serif); color: var(--red); }
+  .services h3 { font-size: 30px; }
+  .services p { font-size: 15px; }
+  .services small { display: block; margin-top: 12px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+
+  .quote { background: var(--navy); color: #fff; }
+  .quote .wrap { display: grid; grid-template-columns: 5fr 7fr; gap: 72px; align-items: center; }
+  .quote img { aspect-ratio: 1/1; object-fit: cover; border-radius: 4px; }
+  .quote blockquote { margin: 0; font: 400 clamp(28px, 3.2vw, 42px)/1.25 var(--serif); }
+  .quote blockquote::before { content: "“"; display: block; color: var(--red); font-size: 80px; line-height: .6; margin-bottom: 18px; }
+  .quote cite { display: block; margin-top: 30px; font: 500 14px var(--sans); font-style: normal; color: rgba(255,255,255,.7); }
+
+  .years { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; list-style: none; padding: 0; margin: 0; }
+  .years li { padding: 0 32px 0 0; }
+  .years li + li { padding-left: 32px; border-left: 1px solid var(--line); }
+  .years h3 { font-size: 52px; margin-bottom: 18px; }
+
+  .industries { background: var(--paper-2); }
+  .ind { display: flex; flex-wrap: wrap; gap: 6px 0; font: 400 clamp(26px, 3.4vw, 44px)/1.35 var(--serif); color: var(--ink); list-style: none; padding: 0; margin: 0; }
+  .ind li:not(:last-child)::after { content: "·"; color: var(--red); margin: 0 18px; }
+
+  .contact .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+  .contact h2 { font-size: clamp(40px, 5.4vw, 72px); }
+  .form { display: grid; gap: 26px; }
+  .field { display: grid; gap: 6px; }
+  label { font-size: 13px; font-weight: 600; color: var(--ink); letter-spacing: .04em; }
+  input, textarea { font: inherit; background: transparent; border: 0; border-bottom: 1px solid #a9a397; padding: 10px 0; color: var(--ink); border-radius: 0; }
+  textarea { min-height: 100px; resize: vertical; }
+  input:focus, textarea:focus { outline: none; border-bottom: 2px solid var(--blue); }
+  .status { font-size: 14px; }
+  .direct { margin-top: 40px; display: grid; gap: 8px; font-size: 18px; }
+  .direct a { text-decoration: none; color: var(--ink); } .direct a:hover { color: var(--blue); }
+
+  footer { border-top: 1px solid var(--line); padding: 40px 0; font-size: 14px; color: var(--muted); }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+
+  @media (max-width: 960px) {
+    nav ul { gap: 18px; }
+    .hero .wrap, .split, .quote .wrap, .contact .wrap { grid-template-columns: 1fr; gap: 48px; }
+    .hero figure img { aspect-ratio: 16/11; }
+    .numbers .wrap { grid-template-columns: 1fr 1fr; }
+    .n:nth-child(3) { padding-left: 0; border-left: 0; }
+    .n:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .services li { grid-template-columns: 50px 1fr; }
+    .services li > p { grid-column: 2; }
+    .years { grid-template-columns: 1fr; gap: 36px; }
+    .years li, .years li + li { padding: 0; border: 0; }
+  }
+  @media (max-width: 680px) {
+    nav { display: none; }
+    section { padding: 84px 0; }
+    .hero { padding: 56px 0 80px; }
+    .n { padding-right: 12px; } .n + .n { padding-left: 16px; }
+    .services li { grid-template-columns: 1fr; gap: 10px; }
+    .services li > p { grid-column: 1; }
+  }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="logo" href="#inicio" aria-label="Agurto, ir al inicio"><img src="https://images.squarespace-cdn.com/content/v1/67fd2c9fc0b03553678512e6/27420828-dfd9-42d3-8cb9-1dc3a445d916/Agurto_logo_2%2C4x3%2C2cm.png?format=300w" alt="Agurto"></a>
+  <nav aria-label="Principal"><ul>
+    <li><a href="#servicios">Servicios</a></li><li><a href="#historia">Historia</a></li><li><a href="#industrias">Clientes</a></li><li><a href="#contacto">Contacto</a></li>
+  </ul></nav>
+  <a class="btn" href="#contacto">Cotizar</a>
+</div></header>
+
+<main id="inicio">
+  <section class="hero" aria-labelledby="h1">
+    <div class="wrap">
+      <div>
+        <p class="label">Operador logístico · Santiago, desde 1982</p>
+        <h1 id="h1" style="margin-top:26px">Logística hecha con <em>oficio</em> y precisión.</h1>
+        <p class="lead">Somos una empresa familiar que almacena, prepara y distribuye la mercadería de marcas líderes en Chile. Cuatro décadas de confianza, con flota e infraestructura propias.</p>
+        <div class="row"><a class="btn" href="#contacto">Conversemos</a><a class="link" href="#servicios">Conocer servicios →</a></div>
+      </div>
+      <figure>
+        <img src="https://images.squarespace-cdn.com/content/v1/67fd2c9fc0b03553678512e6/aed7c7a7-654e-4e48-8d73-b6fc32c77263/8Z3A7078_web.jpg?format=1500w" alt="Operario de Agurto en el centro de distribución">
+        <figcaption><span>Centro de distribución, Santiago</span><span>01</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <div class="numbers"><div class="wrap">
+    <div class="n"><strong>80 mil</strong><span>m² de almacenamiento</span></div>
+    <div class="n"><strong>50</strong><span>vehículos propios</span></div>
+    <div class="n"><strong>40+</strong><span>años de trayectoria</span></div>
+    <div class="n"><strong>2+</strong><span>centros de distribución</span></div>
+  </div></div>
+
+  <section id="servicios" aria-labelledby="sv-t">
+    <div class="wrap split">
+      <div><p class="label">Servicios</p><h2 id="sv-t" style="margin-top:20px">Un solo socio para toda la cadena.</h2></div>
+      <ol class="services">
+        <li><span class="i">i.</span><h3>Recepción y almacenamiento</h3><p>Entrada de contenedores, paletizado y granel, con inventario en línea y patentes para alimentos, cosméticos y alcohol.<small>Rack y granel · Control de calidad · Devoluciones</small></p></li>
+        <li><span class="i">ii.</span><h3>Preparación de pedidos</h3><p>Pedidos para retail, e-commerce y venta en verde, coordinados con agendas y plataformas B2B.<small>Picking · Cross docking · B2B</small></p></li>
+        <li><span class="i">iii.</span><h3>Transporte y distribución</h3><p>Flota propia de 50 vehículos con GPS, entregas al retail y última milla con confirmación en línea.<small>Monitoreo permanente · Seguros completos</small></p></li>
+        <li><span class="i">iv.</span><h3>Valor agregado</h3><p>Etiquetado, packaging personalizado y armado de kits para campañas y lanzamientos.<small>Kitting · Etiquetado · Packaging</small></p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="quote" aria-label="Testimonio de la familia Agurto">
+    <div class="wrap">
+      <img src="https://images.squarespace-cdn.com/content/v1/67fd2c9fc0b03553678512e6/e9766b0a-76f1-4581-b8e4-3c919cca9ad8/zDSC_3290.png?format=1000w" alt="Equipo de Agurto en la bodega" loading="lazy">
+      <div>
+        <blockquote>No somos un proveedor más: trabajamos como parte del equipo de cada cliente, cuidando su mercadería como si fuera nuestra.</blockquote>
+        <cite>Familia Agurto · Texto de ejemplo para validar con el cliente</cite>
+      </div>
+    </div>
+  </section>
+
+  <section id="historia" aria-labelledby="hs-t">
+    <div class="wrap">
+      <div class="split" style="margin-bottom:72px"><div><p class="label">Historia</p></div><h2 id="hs-t">Tres generaciones, una misma forma de trabajar.</h2></div>
+      <ol class="years">
+        <li><h3>1982</h3><p>Juan Agurto y su hijo Sergio fundan la empresa transportando mercadería en Santiago.</p></li>
+        <li><h3>1990</h3><p>Se suman Carlos y Patricio. Crece la flota propia y se consolida la operación.</p></li>
+        <li><h3>Hoy</h3><p>Profesionalización, tecnología y talento para un servicio de excelencia.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="industries" id="industrias" aria-labelledby="in-t">
+    <div class="wrap">
+      <p class="label" id="in-t" style="margin-bottom:28px">Industrias que confían en nosotros</p>
+      <ul class="ind"><li>Cuidado personal</li><li>Juguetería</li><li>Electrodomésticos</li><li>Electrónica</li><li>E-commerce</li><li>Industrial</li><li>Confitería</li><li>Artículos de oficina</li></ul>
+    </div>
+  </section>
+
+  <section class="contact" id="contacto" aria-labelledby="ct-t">
+    <div class="wrap">
+      <div>
+        <p class="label">Contacto</p>
+        <h2 id="ct-t" style="margin-top:20px">Hablemos de tu operación.</h2>
+        <div class="direct"><a href="tel:+56225448620">+56 2 2544 8620</a><a href="mailto:contacto@agurto.cl">contacto@agurto.cl</a></div>
+      </div>
+      <form class="form" novalidate>
+        <div class="field"><label for="b-n">Nombre y empresa</label><input id="b-n" autocomplete="name" required></div>
+        <div class="field"><label for="b-e">Correo</label><input id="b-e" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="b-m">¿Qué necesitas mover o almacenar?</label><textarea id="b-m" required></textarea></div>
+        <div><button class="btn" type="submit">Enviar</button> <p class="status" role="status" aria-live="polite" style="margin-top:14px"></p></div>
+      </form>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap"><span>© 2026 Agurto · Operador logístico, Santiago de Chile</span><span>Propuesta B · Editorial</span></div></footer>
+<script>
+  document.querySelectorAll('form').forEach(f => f.addEventListener('submit', e => {
+    e.preventDefault(); const s = f.querySelector('.status');
+    if (!f.checkValidity()) { s.style.color = '#c62828'; s.textContent = 'Completa los campos con un correo válido.'; f.querySelector(':invalid').focus(); return; }
+    s.style.color = ''; s.textContent = 'Gracias, te contactaremos pronto. (Demostración: no se envían datos.)'; f.reset();
+  }));
+</script>
+<a id="demo-note" href="../propuestas/index.html" style="position:fixed;left:16px;bottom:16px;z-index:999;background:#121826;color:#fff;font:600 12px/1 system-ui,sans-serif;padding:10px 14px;border-radius:999px;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.3)">Propuesta de diseño · Volver al portafolio</a>
+</body>
+</html>

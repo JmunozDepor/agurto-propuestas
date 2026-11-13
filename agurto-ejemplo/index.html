@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agurto | Tu socio logístico</title>
+<meta name="description" content="Ejemplo de rediseño del sitio de Agurto con el sistema de diseño de Loginsa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ---------- Tokens (sistema Loginsa: Outfit + Plus Jakarta Sans, grilla de 5px) ---------- */
+  :root {
+    --ink: #121315;          /* títulos (Loginsa) */
+    --text: #5a5a5a;         /* cuerpo (Loginsa #666, oscurecido para contraste) */
+    --surface: #f0f0f0;      /* fondos suaves (Loginsa / Agurto) */
+    --line: #e1e1e1;
+    --white: #ffffff;
+    --radius-s: 5px;
+    --radius-m: 10px;
+    --shadow-float: 0 6px 25px rgba(0,0,0,0.07);
+    --shadow-raised: 0 0 20px rgba(0,0,0,0.08);
+    --wrap: 1200px;
+    --font-display: "Outfit", system-ui, sans-serif;
+    --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+  }
+  /* Colores Agurto: azul de marca como acento, rojo del logo como destaque */
+  :root {
+    --accent: #0134b8;
+    --accent-ink: #ffffff;
+    --hot: #e1251b;
+    --deep: #0b1b45;
+    --deep-2: #0134b8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--white);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--ink);
+    line-height: 1.1;
+    margin: 0;
+    font-weight: 700;
+  }
+  p { margin: 0; }
+  .wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 20px; }
+  :focus-visible { outline: 3px solid var(--hot); outline-offset: 3px; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 25px;
+    border-radius: var(--radius-s);
+    font-family: var(--font-body); font-weight: 600; font-size: 15px;
+    text-decoration: none; border: 1px solid transparent; cursor: pointer;
+    transition: background-color 200ms ease-out, color 200ms ease-out, border-color 200ms ease-out;
+  }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { background: var(--deep); }
+  .btn-light { background: var(--white); color: var(--ink); }
+  .btn-light:hover { background: var(--surface); }
+  .btn-ghost-light { border-color: rgba(255,255,255,0.6); color: var(--white); }
+  .btn-ghost-light:hover { background: rgba(255,255,255,0.12); }
+
+  .kicker {
+    font-family: var(--font-display); font-weight: 600; font-size: 16px;
+    color: var(--accent); margin-bottom: 10px; display: block;
+  }
+
+  /* ---------- Barra superior (como Loginsa: logo + teléfono + CTA) ---------- */
+  .topbar { background: var(--white); }
+  .topbar .wrap {
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    min-height: 90px;
+  }
+  .logo img { height: 60px; width: auto; }
+  .topbar-actions { display: flex; align-items: center; gap: 25px; font-size: 14px; }
+  .topbar-link {
+    display: inline-flex; align-items: center; gap: 10px;
+    text-decoration: none; color: var(--ink); font-weight: 500;
+  }
+  .topbar-link svg { color: var(--accent); }
+  .topbar-link:hover { color: var(--accent); }
+
+  /* ---------- Banda de navegación oscura ---------- */
+  .navband { background: var(--deep); position: sticky; top: 0; z-index: 50; }
+  .navband .wrap { display: flex; align-items: center; justify-content: space-between; min-height: 55px; }
+  .nav-list { display: flex; gap: 5px; list-style: none; margin: 0; padding: 0; }
+  .nav-list a {
+    display: block; padding: 15px 20px;
+    color: var(--white); text-decoration: none;
+    font-family: var(--font-display); font-weight: 500; font-size: 15px;
+    border-bottom: 3px solid transparent;
+  }
+  .nav-list a:hover { border-bottom-color: var(--hot); }
+  .menu-toggle {
+    display: none; background: none; border: 0; color: var(--white);
+    padding: 10px; margin-left: auto; cursor: pointer;
+  }
+  .navband-note { color: rgba(255,255,255,0.7); font-size: 13px; }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; min-height: 620px; display: flex; align-items: flex-end; overflow: hidden; }
+  .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+  .hero::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.1) 100%);
+  }
+  .hero .wrap { position: relative; z-index: 1; padding-top: 100px; padding-bottom: 80px; }
+  .hero h1 {
+    color: var(--white);
+    font-size: clamp(40px, 6.4vw, 80px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    max-width: 12ch;
+  }
+  .hero h1 span { display: block; }
+  .hero p { color: rgba(255,255,255,0.88); font-size: 18px; max-width: 520px; margin-top: 25px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 35px; }
+
+  /* Único momento de movimiento automático: entrada del titular */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero h1 span, .hero p, .hero-actions {
+      opacity: 0; transform: translateY(25px);
+      animation: rise 700ms cubic-bezier(0.215,0.61,0.355,1) forwards;
+    }
+    .hero h1 span:nth-child(2) { animation-delay: 120ms; }
+    .hero h1 span:nth-child(3) { animation-delay: 240ms; }
+    .hero p { animation-delay: 380ms; }
+    .hero-actions { animation-delay: 480ms; }
+  }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  /* ---------- Sección empresa ---------- */
+  section { scroll-margin-top: 55px; }
+  .about { padding: 100px 0; }
+  .about .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .about h2 { font-size: clamp(30px, 3.6vw, 45px); margin-bottom: 25px; }
+  .about p + p { margin-top: 15px; }
+  .about .btn { margin-top: 30px; }
+  .about-media { position: relative; }
+  .about-media img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-m); }
+  .badge-years {
+    position: absolute; top: -20px; right: -20px;
+    background: var(--hot); color: var(--white);
+    padding: 20px 25px; border-radius: var(--radius-s);
+    font-family: var(--font-display); text-align: center; line-height: 1.1;
+    box-shadow: var(--shadow-float);
+  }
+  .badge-years strong { display: block; font-size: 45px; font-weight: 700; }
+  .badge-years span { font-size: 15px; font-weight: 500; }
+
+  /* ---------- Servicios (tarjetas con borde de acento, como Loginsa) ---------- */
+  .services { padding: 100px 0; background: var(--surface); }
+  .section-head { max-width: 640px; margin-bottom: 50px; }
+  .section-head h2 { font-size: clamp(30px, 3.6vw, 45px); margin-bottom: 15px; }
+  .service-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .service {
+    background: var(--white);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-s);
+    padding: 30px 25px 25px;
+    display: flex; flex-direction: column;
+  }
+  .service-icon {
+    width: 50px; height: 50px; color: var(--accent); margin-bottom: 20px;
+  }
+  .service h3 { font-size: 20px; margin-bottom: 10px; color: var(--deep-2); }
+  .service p { font-size: 15px; }
+  .service-toggle {
+    margin-top: auto; padding-top: 20px;
+    background: none; border: 0; padding-left: 0; padding-right: 0;
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-body); font-weight: 600; font-size: 14px;
+    color: var(--accent); cursor: pointer; text-align: left;
+  }
+  .service-toggle svg { transition: transform 250ms ease-out; }
+  .service-toggle[aria-expanded="true"] svg { transform: rotate(45deg); }
+  .service-panel {
+    display: grid; grid-template-rows: 0fr;
+    transition: grid-template-rows 300ms ease-out;
+  }
+  .service-panel.open { grid-template-rows: 1fr; }
+  .service-panel > div { overflow: hidden; }
+  .service-panel ul { list-style: none; margin: 15px 0 0; padding: 15px 0 0; border-top: 1px solid var(--line); font-size: 14px; }
+  .service-panel li { padding: 5px 0 5px 20px; position: relative; color: var(--ink); }
+  .service-panel li::before {
+    content: ""; position: absolute; left: 0; top: 14px;
+    width: 10px; height: 2px; background: var(--hot);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .service-panel, .service-toggle svg { transition: none; }
+  }
+
+  /* ---------- Capacidad (banda con foto, como la de Loginsa) ---------- */
+  .capacity { position: relative; padding: 100px 0; color: var(--white); overflow: hidden; }
+  .capacity-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .capacity::after { content: ""; position: absolute; inset: 0; background: var(--deep); opacity: 0.88; }
+  .capacity .wrap { position: relative; z-index: 1; }
+  .capacity h2 { color: var(--white); font-size: clamp(30px, 3.6vw, 45px); max-width: 640px; margin-bottom: 50px; }
+  .figures { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid rgba(255,255,255,0.25); }
+  .figure { padding: 30px 25px 0 0; }
+  .figure + .figure { padding-left: 25px; border-left: 1px solid rgba(255,255,255,0.25); }
+  .figure strong {
+    display: block; font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(35px, 4vw, 50px); line-height: 1; letter-spacing: -0.01em;
+  }
+  .figure span { display: block; margin-top: 10px; color: rgba(255,255,255,0.8); font-size: 15px; }
+
+  /* ---------- Historia (línea de tiempo real: 1982 → años 90 → hoy) ---------- */
+  .history { padding: 100px 0; }
+  .timeline { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; position: relative; }
+  .timeline::before {
+    content: ""; position: absolute; top: 10px; left: 0; right: 0; height: 2px; background: var(--line);
+  }
+  .timeline li { position: relative; padding-top: 40px; }
+  .timeline li::before {
+    content: ""; position: absolute; top: 0; left: 0;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--white); border: 5px solid var(--hot);
+  }
+  .timeline h3 { font-size: 30px; color: var(--accent); margin-bottom: 10px; }
+  .timeline p { max-width: 340px; }
+
+  /* ---------- Industrias ---------- */
+  .industries { padding: 0 0 100px; }
+  .industries-box {
+    background: var(--surface); border-radius: var(--radius-m);
+    padding: 50px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 50px; align-items: start;
+  }
+  .industries h2 { font-size: clamp(30px, 3.2vw, 40px); margin-bottom: 15px; }
+  .industry-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .industry-list li {
+    background: var(--white); border-radius: var(--radius-s);
+    padding: 15px 20px; color: var(--ink); font-weight: 600; font-size: 15px;
+    border-left: 3px solid var(--accent);
+  }
+
+  /* ---------- Contacto ---------- */
+  .contact { background: var(--deep); color: rgba(255,255,255,0.85); padding: 100px 0; }
+  .contact .wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; }
+  .contact h2 { color: var(--white); font-size: clamp(30px, 3.6vw, 45px); margin-bottom: 20px; }
+  .contact .kicker { color: var(--white); opacity: 0.75; }
+  .contact-lines { list-style: none; margin: 35px 0 0; padding: 0; display: grid; gap: 15px; }
+  .contact-lines a { display: inline-flex; align-items: center; gap: 15px; color: var(--white); text-decoration: none; font-weight: 600; font-size: 18px; }
+  .contact-lines a:hover { text-decoration: underline; text-underline-offset: 5px; }
+  .contact-lines svg { flex: none; }
+  .form {
+    background: var(--white); border-radius: var(--radius-m); padding: 35px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px; box-shadow: var(--shadow-raised);
+  }
+  .field { display: grid; gap: 5px; }
+  .field.full { grid-column: 1 / -1; }
+  .field label { color: var(--ink); font-size: 14px; font-weight: 600; }
+  .field input, .field textarea {
+    font: inherit; font-size: 15px; color: var(--ink);
+    border: 1px solid #cccccc; border-radius: var(--radius-s);
+    padding: 10px 15px; background: var(--white);
+  }
+  .field textarea { min-height: 120px; resize: vertical; }
+  .field input:focus, .field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent); }
+  .form-foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
+  .form-status { font-size: 14px; color: #198754; font-weight: 600; }
+
+  /* ---------- Footer ---------- */
+  .footer { background: #121315; color: rgba(255,255,255,0.7); font-size: 14px; }
+  .footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; padding-top: 40px; padding-bottom: 40px; }
+  .footer-brand { font-family: var(--font-display); font-weight: 700; font-size: 25px; color: var(--white); }
+  .footer nav { display: flex; flex-wrap: wrap; gap: 25px; }
+  .footer a { text-decoration: none; }
+  .footer a:hover { color: var(--white); }
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1024px) {
+    .service-grid { grid-template-columns: repeat(2, 1fr); }
+    .figures { grid-template-columns: repeat(2, 1fr); }
+    .figure:nth-child(3) { border-left: 0; padding-left: 0; }
+    .figure { padding-bottom: 30px; }
+  }
+  @media (max-width: 800px) {
+    .topbar .wrap { min-height: 75px; }
+    .logo img { height: 45px; }
+    .topbar-link.phone span, .topbar-link.mail { display: none; }
+    .menu-toggle { display: inline-flex; }
+    .navband-note { display: none; }
+    .navband .wrap { flex-wrap: wrap; }
+    .nav-list { display: none; width: 100%; flex-direction: column; padding-bottom: 10px; }
+    .nav-list.open { display: flex; }
+    .nav-list a { padding: 10px 0; }
+    .hero { min-height: 540px; }
+    .hero .wrap { padding-top: 60px; padding-bottom: 50px; }
+    .hero p { font-size: 16px; }
+    .about, .services, .capacity, .history, .contact { padding: 70px 0; }
+    .industries { padding-bottom: 70px; }
+    .about .wrap, .contact .wrap, .industries-box { grid-template-columns: 1fr; gap: 40px; }
+    .badge-years { top: auto; bottom: -20px; right: 15px; padding: 15px 20px; }
+    .badge-years strong { font-size: 35px; }
+    .timeline { grid-template-columns: 1fr; gap: 35px; }
+    .timeline::before { top: 0; bottom: 0; left: 9px; right: auto; width: 2px; height: auto; }
+    .timeline li { padding-top: 0; padding-left: 45px; }
+    .industries-box { padding: 30px 20px; }
+  }
+  @media (max-width: 575px) {
+    .service-grid { grid-template-columns: 1fr; }
+    .figures { grid-template-columns: 1fr; }
+    .figure, .figure + .figure { border-left: 0; padding-left: 0; padding-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.25); }
+    .industry-list { grid-template-columns: 1fr; }
+    .form { grid-template-columns: 1fr; padding: 25px 20px; }
+    .topbar-actions .btn { padding: 10px 15px; font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="topbar">
+    <div class="wrap">
+      <a class="logo" href="#inicio" aria-label="Agurto, ir al inicio">
+        <img src="https://images.squarespace-cdn.com/content/v1/67fd2c9fc0b03553678512e6/27420828-dfd9-42d3-8cb9-1dc3a445d916/Agurto_logo_2%2C4x3%2C2cm.png?format=300w" alt="Agurto">
+      </a>
+      <div class="topbar-actions">
+        <a class="topbar-link phone" href="tel:+56225448620">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+          <span>+56 2 2544 8620</span>
+        </a>
+        <a class="topbar-link mail" href="mailto:contacto@agurto.cl">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          contacto@agurto.cl
+        </a>
+        <a class="btn btn-primary" href="#contacto">Cotizar servicio</a>
+      </div>
+    </div>
+  </div>
+  <nav class="navband" aria-label="Principal">
+    <div class="wrap">
+      <ul class="nav-list" id="nav-list">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#empresa">Empresa</a></li>
+        <li><a href="#historia">Historia</a></li>
+        <li><a href="#industrias">Clientes</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <span class="navband-note">Distribución y transporte en Santiago desde 1982</span>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-list">
+        <span class="sr-label" style="position:absolute;left:-9999px">Abrir menú</span>
+        <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main id="inicio">
+  <section class="hero" aria-labelledby="hero-title">
+    <img class="hero-img" src="https://images.squarespace-cdn.com/content/v1/67fd2c9fc0b03553678512e6/aed7c7a7-654e-4e48-8d73-b6fc32c77263/8Z3A7078_web.jpg?format=2500w" alt="Operario de Agurto con casco azul en un pasillo del centro de distribución">
+    <div class="wrap">
+      <h1 id="hero-title"><span>Tu socio</span> <span>logístico</span> <span>de confianza</span></h1>
+      <p>Más de 40 años distribuyendo y transportando mercadería en Santiago, con flota propia y un equipo que conoce tu operación.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contacto">Cotizar servicio</a>
+        <a class="btn btn-ghost-light" href="#servicios">Ver servicios</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="empresa" aria-labelledby="about-title">
+    <div class="wrap">
+      <div>
+        <span class="kicker">Empresa familiar</span>
+        <h2 id="about-title">Cuatro décadas de logística hecha a la medida</h2>
+        <p>Somos una empresa familiar especializada en distribución y transporte en Santiago de Chile. Construimos nuestra reputación sobre la confianza, la eficiencia y el compromiso con cada cliente.</p>
+        <p>Trabajamos como un socio estratégico: diseñamos soluciones integrales y personalizadas que ayudan a crecer a las empresas con las que trabajamos.</p>
+        <a class="btn btn-primary" href="#historia">Conocer nuestra historia</a>
+      </div>
+      <div class="about-media">
+        <img src="https://images.squarespace-cdn.com/content/v1/67fd2c9fc0b03553678512e6/e9766b0a-76f1-4581-b8e4-3c919cca9ad8/zDSC_3290.png?format=1500w" alt="Equipo de Agurto junto a un montacargas en la bodega" loading="lazy">
+        <div class="badge-years"><strong>40+</strong><span>años de<br>experiencia</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="servicios" aria-labelledby="services-title">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Nuestros servicios</span>
+        <h2 id="services-title">Todo el ciclo, desde la recepción hasta la entrega final</h2>
+        <p>Recibimos, almacenamos, preparamos y despachamos tu mercadería, y sumamos servicios de valor agregado que simplifican tu operación.</p>
+      </div>
+      <div class="service-grid">
+        <article class="service">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10 12 4l9 6v10H3z"/><path d="M7 20v-7h10v7"/><path d="M7 16.5h10"/></svg>
+          <h3>Recepción y almacenamiento</h3>
+          <p>Logística de entrada y almacenamiento con altos estándares de calidad y seguridad.</p>
+          <button class="service-toggle" type="button" aria-expanded="false" aria-controls="p1">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            Ver qué incluye
+          </button>
+          <div class="service-panel" id="p1"><div><ul>
+            <li>Recepción de contenedores</li>
+            <li>Productos paletizados, a granel y en slip sheet</li>
+            <li>Control de calidad e informes</li>
+            <li>Gestión de devoluciones y retornos</li>
+            <li>Patentes para alimentos, cosméticos y alcohol</li>
+            <li>Almacenamiento en rack y a granel</li>
+            <li>Inventario en línea y trazabilidad en tiempo real</li>
+          </ul></div></div>
+        </article>
+        <article class="service">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5"/><path d="M12 12v9"/></svg>
+          <h3>Preparación y despacho de pedidos</h3>
+          <p>Pedidos gestionados con eficiencia para cada canal de venta y necesidad comercial.</p>
+          <button class="service-toggle" type="button" aria-expanded="false" aria-controls="p2">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            Ver qué incluye
+          </button>
+          <div class="service-panel" id="p2"><div><ul>
+            <li>Gestión de agendas y plataformas B2B</li>
+            <li>Preparación de pedidos para e-commerce y venta en verde</li>
+            <li>Cross docking</li>
+          </ul></div></div>
+        </article>
+        <article class="service">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h12v10H2z"/><path d="M14 9.5h4.5L22 13v3h-8z"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg>
+          <h3>Transporte y distribución</h3>
+          <p>Entregas puntuales, seguras y trazables con flota propia y monitoreo permanente.</p>
+          <button class="service-toggle" type="button" aria-expanded="false" aria-controls="p3">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            Ver qué incluye
+          </button>
+          <div class="service-panel" id="p3"><div><ul>
+            <li>Flota propia de 50 vehículos</li>
+            <li>Entregas al retail y última milla</li>
+            <li>Seguimiento en línea y confirmación de entrega</li>
+            <li>Monitoreo GPS y comunicación constante con la flota</li>
+            <li>Seguros para carga, vehículos, personal y daños a terceros</li>
+          </ul></div></div>
+        </article>
+        <article class="service">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/></svg>
+          <h3>Servicios de valor agregado</h3>
+          <p>Soluciones complementarias que suman eficiencia y personalización a tu operación.</p>
+          <button class="service-toggle" type="button" aria-expanded="false" aria-controls="p4">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            Ver qué incluye
+          </button>
+          <div class="service-panel" id="p4"><div><ul>
+            <li>Etiquetado de productos</li>
+            <li>Packaging personalizado</li>
+            <li>Armado de kits</li>
+          </ul></div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="capacity" aria-labelledby="capacity-title">
+    <img class="capacity-img" src="https://images.squarespace-cdn.com/content/v1/67fd2c9fc0b03553678512e6/7c9b86be-0cc6-43e2-a0d9-b591ffe7c405/8Z3A7182-web.jpg?format=2500w" alt="" loading="lazy">
+    <div class="wrap">
+      <h2 id="capacity-title">Infraestructura y flota propias para responder a tiempo</h2>
+      <div class="figures">
+        <div class="figure"><strong>80.000 m²</strong><span>de superficie de almacenamiento</span></div>
+        <div class="figure"><strong>2+</strong><span>centros de distribución</span></div>
+        <div class="figure"><strong>50</strong><span>vehículos propios con GPS</span></div>
+        <div class="figure"><strong>1982</strong><span>año en que empezamos a operar</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="history" id="historia" aria-labelledby="history-title">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Nuestra historia</span>
+        <h2 id="history-title">Una familia que creció junto a sus clientes</h2>
+      </div>
+      <ol class="timeline">
+        <li>
+          <h3>1982</h3>
+          <p>Juan Agurto y su hijo menor, Sergio, fundan la empresa y comienzan a transportar mercadería en Santiago.</p>
+        </li>
+        <li>
+          <h3>Años 90</h3>
+          <p>Se integran Carlos y Patricio. Junto a Sergio amplían la flota de vehículos propios y consolidan la operación.</p>
+        </li>
+        <li>
+          <h3>Hoy</h3>
+          <p>Avanzamos en profesionalización e innovación, invirtiendo en tecnología y talento para seguir entregando un servicio de excelencia.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="industries" id="industrias" aria-labelledby="industries-title">
+    <div class="wrap">
+      <div class="industries-box">
+        <div>
+          <span class="kicker">Nuestros clientes</span>
+          <h2 id="industries-title">Industrias que confían en nosotros</h2>
+          <p>Adaptamos el servicio a cada industria y construimos relaciones de largo plazo basadas en la confianza y la flexibilidad.</p>
+        </div>
+        <ul class="industry-list">
+          <li>Cuidado personal</li>
+          <li>Juguetería</li>
+          <li>Electrodomésticos</li>
+          <li>Electrónica</li>
+          <li>E-commerce</li>
+          <li>Industrial</li>
+          <li>Confitería</li>
+          <li>Artículos de oficina</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contacto" aria-labelledby="contact-title">
+    <div class="wrap">
+      <div>
+        <span class="kicker">Contacto</span>
+        <h2 id="contact-title">¿Trabajamos juntos?</h2>
+        <p>Cuéntanos qué necesitas mover o almacenar y te contactamos con una propuesta para tu operación.</p>
+        <ul class="contact-lines">
+          <li><a href="tel:+56225448620">
+            <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+            +56 2 2544 8620</a></li>
+          <li><a href="mailto:contacto@agurto.cl">
+            <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            contacto@agurto.cl</a></li>
+        </ul>
+      </div>
+      <form class="form" id="contact-form" novalidate>
+        <div class="field">
+          <label for="f-nombre">Nombre</label>
+          <input id="f-nombre" name="nombre" autocomplete="given-name" required>
+        </div>
+        <div class="field">
+          <label for="f-apellido">Apellido</label>
+          <input id="f-apellido" name="apellido" autocomplete="family-name" required>
+        </div>
+        <div class="field full">
+          <label for="f-email">Correo electrónico</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field full">
+          <label for="f-msg">¿Qué necesitas?</label>
+          <textarea id="f-msg" name="mensaje" required></textarea>
+        </div>
+        <div class="form-foot">
+          <button class="btn btn-primary" type="submit">Enviar mensaje</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div>
+      <div class="footer-brand">Agurto</div>
+      <p>Distribución y transporte · Santiago de Chile</p>
+    </div>
+    <nav aria-label="Pie de página">
+      <a href="#servicios">Servicios</a>
+      <a href="#empresa">Empresa</a>
+      <a href="#industrias">Clientes</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  // Menú móvil
+  const toggle = document.querySelector('.menu-toggle');
+  const list = document.getElementById('nav-list');
+  toggle.addEventListener('click', () => {
+    const open = list.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  list.addEventListener('click', e => {
+    if (e.target.closest('a')) { list.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
+  });
+
+  // Tarjetas de servicio expandibles
+  document.querySelectorAll('.service-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const panel = document.getElementById(btn.getAttribute('aria-controls'));
+      const open = panel.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.lastChild.textContent = open ? ' Ocultar detalle' : ' Ver qué incluye';
+    });
+  });
+
+  // Formulario de ejemplo (no envía datos)
+  const form = document.getElementById('contact-form');
+  const status = form.querySelector('.form-status');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      status.style.color = '#dc3545';
+      status.textContent = 'Completa todos los campos con un correo válido.';
+      form.querySelector(':invalid').focus();
+      return;
+    }
+    status.style.color = '';
+    status.textContent = 'Mensaje enviado. Este es un ejemplo: aún no se envían datos.';
+    form.reset();
+  });
+
+</script>
+<a id="demo-note" href="../propuestas/index.html" style="position:fixed;left:16px;bottom:16px;z-index:999;background:#121826;color:#fff;font:600 12px/1 system-ui,sans-serif;padding:10px 14px;border-radius:999px;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.3)">Propuesta de diseño · Volver al portafolio</a>
+</body>
+</html>

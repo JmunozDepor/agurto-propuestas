@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agurto | Operación logística conectada</title>
+<meta name="description" content="Propuesta C: sitio corporativo con foco en tecnología y trazabilidad para Agurto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060b1a; --bg-2: #0b1430; --card: #0f1b3d; --line: rgba(255,255,255,.09);
+    --ink: #f3f6ff; --text: #a9b3cc; --muted: #7581a0;
+    --blue: #3f7bff; --blue-deep: #0134b8; --red: #ff4136; --ok: #34d399;
+    --sans: "Manrope", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, monospace;
+    --wrap: 1240px; --r: 14px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  h1, h2, h3 { color: var(--ink); margin: 0; line-height: 1.08; font-weight: 700; letter-spacing: -0.025em; }
+  p { margin: 0; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+  :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+  .tag { display: inline-flex; align-items: center; gap: 8px; font: 500 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--blue); }
+  .tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--red); box-shadow: 0 0 10px var(--red); }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 10px; font: 700 15px var(--sans); text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: background .2s, border-color .2s; }
+  .btn-primary { background: var(--blue); color: #fff; } .btn-primary:hover { background: #5a8fff; }
+  .btn-ghost { border-color: var(--line); color: var(--ink); background: rgba(255,255,255,.03); } .btn-ghost:hover { border-color: rgba(255,255,255,.3); }
+
+  header { position: sticky; top: 0; z-index: 50; background: rgba(6,11,26,.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; min-height: 72px; gap: 20px; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 800; font-size: 22px; color: var(--ink); letter-spacing: -.02em; }
+  .brand img { height: 36px; width: auto; background: #fff; border-radius: 6px; padding: 4px 6px; }
+  nav ul { display: flex; gap: 30px; list-style: none; margin: 0; padding: 0; }
+  nav a { text-decoration: none; font-weight: 600; font-size: 15px; color: var(--text); } nav a:hover { color: var(--ink); }
+
+  .hero { position: relative; padding: 100px 0 90px; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; }
+  .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: .28; filter: saturate(.6); }
+  .hero-bg::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 30%, rgba(63,123,255,.25), transparent 60%), linear-gradient(180deg, rgba(6,11,26,.4), var(--bg) 95%); }
+  .hero .wrap { position: relative; display: grid; grid-template-columns: 7fr 5fr; gap: 56px; align-items: center; }
+  .hero h1 { font-size: clamp(40px, 5.8vw, 74px); margin-top: 22px; }
+  .hero h1 span { background: linear-gradient(90deg, #7aa4ff, var(--blue)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero .lead { margin-top: 24px; max-width: 560px; font-size: 18px; }
+  .hero .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 36px; }
+
+  .track { background: rgba(15,27,61,.85); border: 1px solid var(--line); border-radius: var(--r); padding: 26px; box-shadow: 0 30px 60px rgba(0,0,0,.4); }
+  .track-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+  .track-head h2 { font-size: 17px; }
+  .track-head small { font: 500 11px var(--mono); color: var(--muted); }
+  .track form { display: flex; gap: 8px; }
+  .track input { flex: 1; min-width: 0; font: 500 14px var(--mono); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; color: var(--ink); }
+  .track input:focus { outline: none; border-color: var(--blue); }
+  .track button { padding: 12px 16px; }
+  .steps { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 0; }
+  .steps li { display: grid; grid-template-columns: 22px 1fr auto; gap: 14px; align-items: start; padding-bottom: 18px; position: relative; font-size: 14px; }
+  .steps li:not(:last-child)::before { content: ""; position: absolute; left: 10px; top: 20px; bottom: 0; width: 2px; background: var(--line); }
+  .steps li.done:not(:last-child)::before { background: var(--ok); }
+  .dot { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--line); background: var(--bg); position: relative; z-index: 1; }
+  .done .dot { border-color: var(--ok); background: var(--ok); }
+  .now .dot { border-color: var(--blue); box-shadow: 0 0 0 5px rgba(63,123,255,.2); }
+  .steps strong { color: var(--ink); font-weight: 600; display: block; }
+  .steps time { font: 500 12px var(--mono); color: var(--muted); }
+
+  .stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-2); }
+  .stats .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .stat { padding: 40px 24px; border-left: 1px solid var(--line); }
+  .stat:first-child { border-left: 0; padding-left: 0; }
+  .stat strong { display: block; font: 800 44px/1 var(--sans); color: var(--ink); letter-spacing: -.03em; }
+  .stat span { display: block; margin-top: 10px; font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+
+  section { padding: 110px 0; }
+  .head { max-width: 700px; margin-bottom: 52px; }
+  .head h2 { font-size: clamp(30px, 3.8vw, 48px); margin-top: 16px; }
+  .head p { margin-top: 16px; font-size: 17px; }
+
+  .bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; }
+  .cell { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 32px; position: relative; overflow: hidden; }
+  .cell h3 { font-size: 22px; margin: 18px 0 10px; }
+  .cell .ico { width: 46px; height: 46px; border-radius: 10px; background: rgba(63,123,255,.12); color: var(--blue); display: grid; place-items: center; }
+  .cell ul { margin: 18px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+  .cell li { font-size: 13px; padding: 5px 11px; border: 1px solid var(--line); border-radius: 999px; }
+  .c1 { grid-column: span 4; } .c2 { grid-column: span 2; } .c3 { grid-column: span 2; } .c4 { grid-column: span 4; }
+  .c1 { background: linear-gradient(135deg, #12245a, var(--card)); }
+  .c4 img { position: absolute; right: 0; top: 0; height: 100%; width: 42%; object-fit: cover; opacity: .55; mask-image: linear-gradient(90deg, transparent, #000 60%); -webkit-mask-image: linear-gradient(90deg, transparent, #000 60%); }
+  .c4 > div { max-width: 58%; position: relative; }
+
+  .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; list-style: none; padding: 0; margin: 0; counter-reset: s; }
+  .flow li { padding: 26px 22px 0 0; border-top: 2px solid var(--line); position: relative; counter-increment: s; }
+  .flow li::before { content: "0" counter(s); font: 500 12px var(--mono); color: var(--blue); display: block; margin-bottom: 14px; }
+  .flow li:first-child { border-top-color: var(--blue); }
+  .flow h3 { font-size: 18px; margin-bottom: 8px; }
+  .flow p { font-size: 14px; }
+
+  .ind { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; list-style: none; padding: 0; margin: 0; }
+  .ind li { padding: 22px; border: 1px solid var(--line); border-radius: 12px; color: var(--ink); font-weight: 600; background: rgba(255,255,255,.02); }
+
+  .legacy { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .legacy .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .legacy img { border-radius: var(--r); aspect-ratio: 4/3; object-fit: cover; }
+  .legacy ol { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 20px; }
+  .legacy li { display: grid; grid-template-columns: 90px 1fr; gap: 16px; }
+  .legacy li b { font: 500 14px var(--mono); color: var(--blue); padding-top: 2px; }
+
+  .cta { text-align: center; }
+  .cta-box { background: radial-gradient(ellipse at top, rgba(63,123,255,.35), transparent 70%), var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 72px 28px; }
+  .cta h2 { font-size: clamp(32px, 4.4vw, 56px); max-width: 760px; margin: 18px auto 0; }
+  .cta p { margin: 18px auto 0; max-width: 520px; }
+  .cta-form { display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; max-width: 760px; margin: 36px auto 0; }
+  .cta-form input { font: inherit; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; color: var(--ink); min-width: 0; }
+  .cta-form input:focus { outline: none; border-color: var(--blue); }
+  .status { grid-column: 1 / -1; font-size: 14px; min-height: 1em; }
+  .direct { margin-top: 26px; font: 500 14px var(--mono); display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
+  .direct a { text-decoration: none; } .direct a:hover { color: var(--ink); }
+
+  footer { padding: 40px 0; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+  @media (max-width: 1000px) {
+    .hero .wrap, .legacy .wrap { grid-template-columns: minmax(0, 1fr); }
+    .hero h1 { overflow-wrap: anywhere; }
+    .stats .wrap { grid-template-columns: 1fr 1fr; }
+    .stat:nth-child(3) { border-left: 0; padding-left: 0; }
+    .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .c1, .c2, .c3, .c4 { grid-column: span 6; }
+    .flow { grid-template-columns: 1fr 1fr; row-gap: 30px; }
+    .ind { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 700px) {
+    nav { display: none; }
+    section { padding: 80px 0; }
+    .hero { padding: 64px 0; }
+    .flow { grid-template-columns: 1fr; }
+    .c4 img { display: none; } .c4 > div { max-width: none; }
+    .cta-form { grid-template-columns: 1fr; }
+    .stat strong { font-size: 34px; }
+  }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="#inicio" aria-label="Agurto, ir al inicio"><img src="https://images.squarespace-cdn.com/content/v1/67fd2c9fc0b03553678512e6/27420828-dfd9-42d3-8cb9-1dc3a445d916/Agurto_logo_2%2C4x3%2C2cm.png?format=300w" alt=""></a>
+  <nav aria-label="Principal"><ul>
+    <li><a href="#servicios">Servicios</a></li><li><a href="#proceso">Proceso</a></li><li><a href="#industrias">Industrias</a></li><li><a href="#empresa">Empresa</a></li>
+  </ul></nav>
+  <a class="btn btn-primary" href="#contacto">Cotizar</a>
+</div></header>
+
+<main id="inicio">
+  <section class="hero" aria-labelledby="h1">
+    <div class="hero-bg"><img src="https://images.squarespace-cdn.com/content/v1/67fd2c9fc0b03553678512e6/7c9b86be-0cc6-43e2-a0d9-b591ffe7c405/8Z3A7182-web.jpg?format=2500w" alt=""></div>
+    <div class="wrap">
+      <div>
+        <span class="tag">Operador logístico 3PL · Santiago</span>
+        <h1 id="h1">Tu operación logística, <span>visible en tiempo real</span></h1>
+        <p class="lead">Almacenamiento, preparación y distribución con flota propia, GPS e inventario en línea. Más de 40 años de experiencia con la tecnología que exige el retail de hoy.</p>
+        <div class="actions"><a class="btn btn-primary" href="#contacto">Solicitar cotización</a><a class="btn btn-ghost" href="#servicios">Explorar servicios</a></div>
+      </div>
+      <aside class="track" aria-labelledby="tr-t">
+        <div class="track-head"><h2 id="tr-t">Seguimiento de pedido</h2><small>VISTA DE EJEMPLO</small></div>
+        <form onsubmit="event.preventDefault()"><label class="sr" for="trk" style="position:absolute;left:-9999px">Número de pedido</label><input id="trk" value="AGU-2026-004817"><button class="btn btn-primary" type="submit">Buscar</button></form>
+        <ol class="steps">
+          <li class="done"><span class="dot"></span><div><strong>Recibido en CD</strong>Centro de distribución</div><time>08:12</time></li>
+          <li class="done"><span class="dot"></span><div><strong>Pedido preparado</strong>3 bultos · 2 pallets</div><time>10:40</time></li>
+          <li class="now"><span class="dot"></span><div><strong>En ruta</strong>Vehículo 23 · GPS activo</div><time>13:05</time></li>
+          <li><span class="dot"></span><div><strong>Entregado</strong>Confirmación con firma</div><time>—</time></li>
+        </ol>
+      </aside>
+    </div>
+  </section>
+
+  <div class="stats"><div class="wrap">
+    <div class="stat"><strong>80.000 m²</strong><span>Almacenamiento</span></div>
+    <div class="stat"><strong>50</strong><span>Vehículos con GPS</span></div>
+    <div class="stat"><strong>2+</strong><span>Centros de distribución</span></div>
+    <div class="stat"><strong>1982</strong><span>Inicio de operaciones</span></div>
+  </div></div>
+
+  <section id="servicios" aria-labelledby="sv-t">
+    <div class="wrap">
+      <div class="head"><span class="tag">Servicios</span><h2 id="sv-t">Una plataforma logística completa, operada por personas que conocen tu negocio</h2></div>
+      <div class="bento">
+        <article class="cell c1"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10 12 4l9 6v10H3z"/><path d="M7 20v-7h10v7"/></svg></div><h3>Recepción y almacenamiento</h3><p>Entrada de contenedores, control de calidad e inventario en línea con trazabilidad en tiempo real.</p><ul><li>Rack y granel</li><li>Slip sheet</li><li>Patentes alimentos, cosmética y alcohol</li><li>Devoluciones</li></ul></article>
+        <article class="cell c2"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/></svg></div><h3>Preparación de pedidos</h3><p>Retail, e-commerce, venta en verde y cross docking.</p></article>
+        <article class="cell c3"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/></svg></div><h3>Valor agregado</h3><p>Etiquetado, packaging personalizado y armado de kits.</p></article>
+        <article class="cell c4"><img src="https://images.squarespace-cdn.com/content/v1/67fd2c9fc0b03553678512e6/aed7c7a7-654e-4e48-8d73-b6fc32c77263/8Z3A7078_web.jpg?format=1000w" alt="" loading="lazy"><div><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h12v10H2z"/><path d="M14 9.5h4.5L22 13v3h-8z"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg></div><h3>Transporte y última milla</h3><p>Flota propia de 50 vehículos, monitoreo GPS, confirmación de entrega en línea y seguros completos.</p><ul><li>Retail</li><li>Última milla</li><li>Seguimiento en línea</li></ul></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="proceso" aria-labelledby="pr-t" style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><span class="tag">Proceso</span><h2 id="pr-t">Del contenedor al cliente final, sin puntos ciegos</h2></div>
+      <ol class="flow">
+        <li><h3>Recepción</h3><p>Descarga, conteo y control de calidad.</p></li>
+        <li><h3>Almacenaje</h3><p>Ubicación en rack o granel con inventario en línea.</p></li>
+        <li><h3>Preparación</h3><p>Picking y armado según canal de venta.</p></li>
+        <li><h3>Despacho</h3><p>Ruteo y carga en flota propia.</p></li>
+        <li><h3>Entrega</h3><p>GPS y confirmación de recepción.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="industrias" aria-labelledby="in-t" style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><span class="tag">Industrias</span><h2 id="in-t">Experiencia en categorías exigentes</h2></div>
+      <ul class="ind"><li>Cuidado personal</li><li>Juguetería</li><li>Electrodomésticos</li><li>Electrónica</li><li>E-commerce</li><li>Industrial</li><li>Confitería</li><li>Artículos de oficina</li></ul>
+    </div>
+  </section>
+
+  <section class="legacy" id="empresa" aria-labelledby="lg-t">
+    <div class="wrap">
+      <img src="https://images.squarespace-cdn.com/content/v1/67fd2c9fc0b03553678512e6/e9766b0a-76f1-4581-b8e4-3c919cca9ad8/zDSC_3290.png?format=1500w" alt="Equipo de Agurto junto a un montacargas" loading="lazy">
+      <div>
+        <span class="tag">Empresa</span>
+        <h2 id="lg-t" style="font-size:clamp(30px,3.8vw,46px);margin-top:16px">Tecnología nueva, compromiso de siempre</h2>
+        <ol>
+          <li><b>1982</b><p>Juan Agurto y su hijo Sergio fundan la empresa en Santiago.</p></li>
+          <li><b>1990s</b><p>Se integran Carlos y Patricio; crece la flota propia.</p></li>
+          <li><b>Hoy</b><p>Inversión en tecnología, trazabilidad y talento.</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="contacto" aria-labelledby="ct-t">
+    <div class="wrap"><div class="cta-box">
+      <span class="tag">Contacto comercial</span>
+      <h2 id="ct-t">¿Listo para una logística que puedes ver?</h2>
+      <p>Déjanos tus datos y un ejecutivo te contactará en menos de 24 horas hábiles.</p>
+      <form class="cta-form" novalidate>
+        <label for="c-e" style="position:absolute;left:-9999px">Empresa</label><input id="c-e" placeholder="Empresa" autocomplete="organization" required>
+        <label for="c-m" style="position:absolute;left:-9999px">Correo</label><input id="c-m" type="email" placeholder="Correo corporativo" autocomplete="email" required>
+        <button class="btn btn-primary" type="submit">Quiero cotizar</button>
+        <p class="status" role="status" aria-live="polite"></p>
+      </form>
+      <div class="direct"><a href="tel:+56225448620">+56 2 2544 8620</a><a href="mailto:contacto@agurto.cl">contacto@agurto.cl</a></div>
+    </div></div>
+  </section>
+</main>
+<footer><div class="wrap"><span>© 2026 Agurto · Operador logístico, Santiago de Chile</span><span>Propuesta C · Tecnológica</span></div></footer>
+<script>
+  document.querySelectorAll('.cta-form').forEach(f => f.addEventListener('submit', e => {
+    e.preventDefault(); const s = f.querySelector('.status');
+    if (!f.checkValidity()) { s.style.color = '#ff6b6b'; s.textContent = 'Ingresa empresa y un correo válido.'; f.querySelector(':invalid').focus(); return; }
+    s.style.color = '#34d399'; s.textContent = 'Gracias, te contactaremos pronto. (Demostración: no se envían datos.)'; f.reset();
+  }));
+</script>
+<a id="demo-note" href="../propuestas/index.html" style="position:fixed;left:16px;bottom:16px;z-index:999;background:#121826;color:#fff;font:600 12px/1 system-ui,sans-serif;padding:10px 14px;border-radius:999px;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.3)">Propuesta de diseño · Volver al portafolio</a>
+</body>
+</html>
